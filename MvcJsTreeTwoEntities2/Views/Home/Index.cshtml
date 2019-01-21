@@ -1,0 +1,31 @@
+﻿<h2>Test</h2>
+
+<form asp-controller="Home" asp-action="Index" method="post">
+    <p>
+        Number of Roles: <input type="number" name="NumberRoles">
+        Number of Legimitations per Parent: <input type="number" name="NumberLegimitationsPerChild" />
+        <input type="submit" name="ButtonType" value="Generate" />
+        <input type="submit" name="ButtonType" value="DeleteAll" />
+    </p>
+</form>
+
+<div id="jstree">
+</div>
+
+@section scripts{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css"/>
+    <script src="Scripts/jsTree3/jstree.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('#jstree').jstree({
+                "core": {
+                    "themes": {
+                        "variant": "large"
+                    },
+                    "data": @Html.Raw(ViewBag.Json)
+                },
+                "plugins": ["wholerow"],
+            });
+        });
+    </script>
+}
